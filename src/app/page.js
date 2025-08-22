@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import back from "../img/back.png";
 
 export default function Home() {
   const [introDone, setIntroDone] = useState(false);
@@ -29,39 +28,54 @@ export default function Home() {
     visible: (i) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.15, duration: 0.6, ease: "easeOut" }, // slightly longer
+      transition: { delay: i * 0.15, duration: 0.6, ease: "easeOut" },
     }),
   };
 
   return (
-    <div className="w-full h-screen overflow-hidden relative">
+    <div className="w-full h-screen overflow-hidden relative bg-black">
       {/* Background */}
-      <motion.div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${"https://images.unsplash.com/photo-1522158637959-30385a09e0da?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"})` }}
-        initial={{ scale: 1.2, filter: "blur(10px)" }}
-        animate={
-          introDone
-            ? { scale: [1, 1.05, 1], filter: "blur(0px)" }
-            : { scale: 1.2, filter: "blur(10px)" }
-        }
-        transition={{
-          filter: { delay: 1, duration: 1 },
-          scale: introDone
-            ? { duration: 12, repeat: Infinity, ease: "easeInOut" }
-            : { duration: 0 },
-        }}
-      />
+     <motion.div
+  className="absolute inset-0 bg-cover bg-center"
+  style={{
+    backgroundImage: `url("https://images.unsplash.com/photo-1522158637959-30385a09e0da?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0")`,
+  }}
+  initial={{ scale: 1.2, filter: "blur(10px)" }}
+  animate={{
+    scale: introDone ? [1, 1.05, 1.1, 1] : 1.2,
+    rotate: introDone ? [0, 1, -1, 0] : 0,
+    filter: introDone ? ["blur(10px)", "blur(6px)", "blur(0px)"] : "blur(10px)",
+  }}
+  transition={
+    introDone
+      ? { duration: 5, repeat: Infinity, ease: "easeInOut", times: [0, 0.3, 1] }
+      : { duration: 0 }
+  }
+/>
 
-      {/* Overlay */}
-      {introDone && (
-        <motion.div
-          className="absolute inset-0 bg-black/30 z-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        />
-      )}
+      {/* Floating Particles */}
+      {!introDone &&
+        Array.from({ length: 15 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-white rounded-full"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [-10, 10],
+              x: [-5, 5],
+              opacity: [0.2, 1, 0.2],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 3 + Math.random() * 2,
+              ease: "easeInOut",
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
 
       {/* Intro */}
       <AnimatePresence>
@@ -74,15 +88,29 @@ export default function Home() {
             transition={{ duration: 1 }}
           >
             <motion.div
-              className="w-56 h-56 rounded-full mb-4 bg-white border-4 border-white"
-              style={{ boxShadow: "0 0 20px rgba(255,255,255,0.8)" }}
+              className="w-56 h-56 rounded-full mb-4 bg-white border-4 border-white relative"
+              style={{ boxShadow: "0 0 30px rgba(255,255,255,0.8)" }}
               initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 1.5 }}
-            />
-            <p className="text-2xl italic text-white font-light drop-shadow-md mt-4">
+              animate={{ scale: [0, 1.1, 1], opacity: [0, 1, 1] }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+            >
+              {/* Pulsating Glow */}
+              <motion.div
+                className="absolute inset-0 rounded-full border border-white"
+                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+                transition={{ repeat: Infinity, duration: 2 }}
+              />
+            </motion.div>
+
+            {/* Animated Text */}
+            <motion.p
+              className="text-2xl italic text-white font-light drop-shadow-md mt-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 1.2, ease: "easeOut" }}
+            >
               United by sound, lifted by the rhythm
-            </p>
+            </motion.p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -124,7 +152,6 @@ export default function Home() {
       {/* Hamburger & Slide Menu */}
       {introDone && (
         <>
-          {/* Hamburger Button */}
           <motion.button
             className="absolute top-4 right-4 z-30 text-white"
             onClick={() => setMenuOpen(true)}
@@ -135,7 +162,6 @@ export default function Home() {
             <Menu size={32} />
           </motion.button>
 
-          {/* Slide-out Menu */}
           <AnimatePresence>
             {menuOpen && (
               <motion.div
@@ -143,9 +169,8 @@ export default function Home() {
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
-                transition={{ duration: 0.8, ease: "easeInOut" }} // slower, smooth open/close
+                transition={{ duration: 0.8, ease: "easeInOut" }}
               >
-                {/* Close button */}
                 <button
                   onClick={() => setMenuOpen(false)}
                   className="absolute top-4 right-4 text-white hover:text-gray-300 transition"
@@ -153,7 +178,6 @@ export default function Home() {
                   <X size={28} />
                 </button>
 
-                {/* Centered Heading & Links */}
                 <div className="flex-1 flex flex-col justify-center items-center gap-6">
                   <h2 className="text-2xl font-bold mb-6">Who we are</h2>
                   <nav className="flex flex-col gap-4 text-lg">
