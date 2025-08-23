@@ -1,5 +1,6 @@
 // app/contact/page.js
 import Navbar from "../../components/Navbar";
+import Image from "next/image";
 
 export default function ContactPage() {
   const navLinks = [
@@ -16,14 +17,15 @@ export default function ContactPage() {
       <Navbar navLinks={navLinks} />
 
       {/* Hero Section */}
-      <div
-        className="w-full h-screen relative bg-cover bg-center flex items-end"
-        style={{
-          backgroundImage:
-            'url("https://globalrecords.com/wp-content/uploads/2020/06/ourArtistsBg.jpg")',
-          backgroundAttachment: "fixed", // fixed background
-        }}
-      >
+      <div className="w-full h-screen relative flex items-end">
+        <Image
+          src="https://globalrecords.com/wp-content/uploads/2020/06/ourArtistsBg.jpg"
+          alt="Contact background"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/50 z-0"></div>
 
@@ -45,9 +47,10 @@ export default function ContactPage() {
           <h2 className="text-3xl font-bold text-yellow-400 mb-6">Get in Touch</h2>
           <form className="grid grid-cols-1 gap-6">
             <div>
-              <label className="block text-gray-300 mb-2">Full Name</label>
+              <label htmlFor="fullName" className="block text-gray-300 mb-2">Full Name</label>
               <input
                 type="text"
+                id="fullName"
                 required
                 className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-yellow-400 focus:outline-none"
                 placeholder="Enter your full name"
@@ -55,9 +58,10 @@ export default function ContactPage() {
             </div>
 
             <div>
-              <label className="block text-gray-300 mb-2">Email</label>
+              <label htmlFor="email" className="block text-gray-300 mb-2">Email</label>
               <input
                 type="email"
+                id="email"
                 required
                 className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-yellow-400 focus:outline-none"
                 placeholder="Enter your email"
@@ -65,9 +69,10 @@ export default function ContactPage() {
             </div>
 
             <div>
-  <label className="block text-gray-300 mb-2">Subject</label>
+  <label htmlFor="subject" className="block text-gray-300 mb-2">Subject</label>
   <select
     required
+    id="subject"
     className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-yellow-400 focus:outline-none"
     defaultValue="" // ensures placeholder is selected by default
   >
@@ -83,9 +88,10 @@ export default function ContactPage() {
 
 
             <div>
-              <label className="block text-gray-300 mb-2">Message</label>
+              <label htmlFor="message" className="block text-gray-300 mb-2">Message</label>
               <textarea
                 required
+                id="message"
                 rows={6}
                 className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-yellow-400 focus:outline-none"
                 placeholder="Write your message..."

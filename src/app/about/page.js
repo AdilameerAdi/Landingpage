@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 
@@ -18,12 +19,16 @@ export default function About() {
   return (
     <div className="relative w-full min-h-screen">
       {/* Background */}
-      <div
-        className="fixed inset-0 bg-[position:60%] bg-cover sm:bg-center"
-        style={{
-          backgroundImage: `url("https://globalrecords.com/wp-content/uploads/2020/05/globalAbout22.jpg")`,
-        }}
-      ></div>
+      <div className="fixed inset-0">
+        <Image
+          src="https://globalrecords.com/wp-content/uploads/2020/05/globalAbout22.jpg"
+          alt="About background"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover sm:object-center [object-position:60%]"
+        />
+      </div>
 
       {/* Dark Overlay */}
       <div className="fixed inset-0 bg-black/50"></div>
