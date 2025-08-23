@@ -125,17 +125,17 @@ export default function About() {
       [Company Name] <br/> – Bringing Music to Life
     </h2>
     <br />
-    <p className="text-white text-lg sm:text-xl leading-relaxed">
-      [Company Name] is a vibrant, independent music <br/>  label dedicated to discovering and promoting <br/> 
-      talent from around the world. With a diverse roster <br/>  of artists spanning Pop, Electronic, Hip-Hop,
-      and <br/> regional genres, the label delivers unforgettable <br/>  musical experiences across streaming
-      platforms , <br/>  live performances, and media outlets.
+    <p className="text-white text-lg sm:text-xl leading-relaxed md:pr-100">
+      [Company Name] is a vibrant, independent music   label dedicated to discovering and promoting 
+      talent from around the world. With a diverse roster   of artists spanning Pop, Electronic, Hip-Hop,
+      and  regional genres, the label delivers unforgettable   musical experiences across streaming
+      platforms ,  live performances, and media outlets.
     </p>
     <br />
-    <p className="text-white text-lg sm:text-xl leading-relaxed">
-      Focused on creativity, innovation, and authenticity, <br/>  [Company Name] produces hundreds of tracks <br/> 
-      and videos each year, connecting with fans <br/>  everywhere. By nurturing emerging talent and <br/>  embracing
-      a global music culture, the label <br/>  continues to shape the industry while bringing joy,<br/>  energy, and
+    <p className="text-white text-lg sm:text-xl leading-relaxed md:pr-100">
+      Focused on creativity, innovation, and authenticity,  [Company Name] produces hundreds of tracks 
+      and videos each year, connecting with fans   everywhere. By nurturing emerging talent and   embracing
+      a global music culture, the label   continues to shape the industry while bringing joy, energy, and
       inspiration to audiences worldwide.
     </p>
   </div>
