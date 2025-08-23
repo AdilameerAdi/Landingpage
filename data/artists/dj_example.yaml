@@ -1,0 +1,5 @@
+name: "DJ Example Name"
+artist-tag: "dj"              # Matches tags in metadata.json
+profile-url: "/artists/dj_example.jpg"
+Genre: "House, EDM"           # Comma-separated genres
+Description: "DJ Example is a renowned DJ famous for party hits..."

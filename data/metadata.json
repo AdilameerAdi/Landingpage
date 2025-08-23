@@ -1,0 +1,13 @@
+[
+  { "file": "img1.jpg", "tags": ["dj", "party"] },
+  { "file": "img2.jpg", "tags": ["concert", "pop"] },
+  { "file": "img3.jpg", "tags": ["dj", "live"] },
+  { "file": "img4.jpg", "tags": ["festival", "music"] },
+  { "file": "img5.jpg", "tags": ["party", "dance"] },
+  { "file": "img6.jpg", "tags": ["pop", "concert"] },
+  { "file": "img7.jpg", "tags": ["dj", "night"] },
+  { "file": "img8.jpg", "tags": ["festival", "fun"] },
+  { "file": "img9.jpg", "tags": ["party", "live"] },
+  { "file": "img10.jpg", "tags": ["concert", "dj"] },
+  { "file": "img11.jpg", "tags": ["music", "dance"] }
+]
