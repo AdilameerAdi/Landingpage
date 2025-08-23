@@ -2,24 +2,23 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
-  const [introDone, setIntroDone] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [logoMoved, setLogoMoved] = useState(false);
+  const [bgAnimStart, setBgAnimStart] = useState(false);
+  const [blurRemoved, setBlurRemoved] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIntroDone(true), 5000);
-    const skipIntro = () => setIntroDone(true);
-
-    window.addEventListener("scroll", skipIntro);
-    window.addEventListener("click", skipIntro);
-    window.addEventListener("keydown", skipIntro);
-
+    const logoTimer = setTimeout(() => {
+      setLogoMoved(true);
+      setBlurRemoved(true);
+    }, 2000);
+    const bgTimer = setTimeout(() => setBgAnimStart(true), 4000);
     return () => {
-      clearTimeout(timer);
-      window.removeEventListener("scroll", skipIntro);
-      window.removeEventListener("click", skipIntro);
-      window.removeEventListener("keydown", skipIntro);
+      clearTimeout(logoTimer);
+      clearTimeout(bgTimer);
     };
   }, []);
 
@@ -32,132 +31,86 @@ export default function Home() {
     }),
   };
 
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "Who we are", href: "/about" },
+    { name: "Gallery", href: "/gallery" },
+    { name: "Artists", href: "/artists" },
+    { name: "Contact us", href: "/contact" },
+  ];
+
   return (
     <div className="w-full h-screen overflow-hidden relative bg-black">
-      {/* Background */}
-     <motion.div
-  className="absolute inset-0 bg-cover bg-center"
-  style={{
-    backgroundImage: `url("https://images.unsplash.com/photo-1522158637959-30385a09e0da?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0")`,
-  }}
-  initial={{ scale: 1.2, filter: "blur(10px)" }}
-  animate={{
-    scale: introDone ? [1, 1.05, 1.1, 1] : 1.2,
-    rotate: introDone ? [0, 1, -1, 0] : 0,
-    filter: introDone ? ["blur(10px)", "blur(6px)", "blur(0px)"] : "blur(10px)",
-  }}
-  transition={
-    introDone
-      ? { duration: 5, repeat: Infinity, ease: "easeInOut", times: [0, 0.3, 1] }
-      : { duration: 0 }
-  }
-/>
-
-      {/* Floating Particles */}
-      {!introDone &&
-        Array.from({ length: 15 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-white rounded-full"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [-10, 10],
-              x: [-5, 5],
-              opacity: [0.2, 1, 0.2],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 3 + Math.random() * 2,
-              ease: "easeInOut",
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
-
-      {/* Intro */}
-      <AnimatePresence>
-        {!introDone && (
-          <motion.div
-            className="absolute inset-0 flex flex-col items-center justify-center text-center z-20"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-          >
-            <motion.div
-              className="w-56 h-56 rounded-full mb-4 bg-white border-4 border-white relative"
-              style={{ boxShadow: "0 0 30px rgba(255,255,255,0.8)" }}
-              initial={{ scale: 0 }}
-              animate={{ scale: [0, 1.1, 1], opacity: [0, 1, 1] }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-            >
-              {/* Pulsating Glow */}
-              <motion.div
-                className="absolute inset-0 rounded-full border border-white"
-                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-                transition={{ repeat: Infinity, duration: 2 }}
-              />
-            </motion.div>
-
-            {/* Animated Text */}
-            <motion.p
-              className="text-2xl italic text-white font-light drop-shadow-md mt-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 1.2, ease: "easeOut" }}
-            >
-              United by sound, lifted by the rhythm
-            </motion.p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Background Image */}
+      <motion.div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: `url("https://images.unsplash.com/photo-1522158637959-30385a09e0da?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0")`,
+        }}
+        initial={{ scale: 1.2, filter: "blur(10px)" }}
+        animate={{
+          scale: bgAnimStart ? [1, 1.05, 1.1, 1] : 1.2,
+          rotate: bgAnimStart ? [0, 1, -1, 0] : 0,
+          filter: blurRemoved ? "blur(0px)" : "blur(10px)",
+        }}
+        transition={{
+          scale: bgAnimStart
+            ? { duration: 3, repeat: Infinity, ease: "easeInOut", times: [0, 0.3, 1] }
+            : { duration: 0 },
+          filter: { duration: 1 },
+        }}
+      />
 
       {/* Logo + Motto */}
       <motion.div
-        className="absolute z-30 flex flex-col items-start gap-2"
+        className="absolute z-30 flex flex-col items-center gap-2"
         initial={{
-          scale: 0,
-          opacity: 0,
+          opacity: 1,
           top: "50%",
           left: "50%",
           x: "-50%",
           y: "-50%",
         }}
         animate={
-          introDone
-            ? { scale: 1, opacity: 1, top: "1rem", left: "1rem", x: 0, y: 0 }
-            : { scale: 0, opacity: 0 }
+          logoMoved
+            ? { top: "1rem", left: "1rem", x: 0, y: 0 }
+            : { top: "50%", left: "50%", x: "-50%", y: "-50%" }
         }
-        transition={{ duration: 1 }}
+        transition={{ duration: 0.7, ease: "easeInOut" }}
       >
-        <div
-          className="w-16 h-16 rounded-full bg-white border-2 border-white"
+        <motion.div
+          className="rounded-full bg-white border-2 border-white"
           style={{ boxShadow: "0 0 10px rgba(255,255,255,0.8)" }}
+          initial={{ width: 250, height: 250 }}
+          animate={{
+            width: logoMoved ? 96 : 250,
+            height: logoMoved ? 96 : 250,
+          }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
         />
-        {introDone && (
-          <motion.p
-            className="text-base italic text-white drop-shadow-md pl-1"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-          >
-            United by sound, lifted by the rhythm
-          </motion.p>
-        )}
+        <motion.p
+          className="text-base italic text-white drop-shadow-md text-center"
+          initial={{ opacity: 1, y: 0 }}
+          animate={
+            logoMoved
+              ? { opacity: 1, y: 0, alignSelf: "flex-start", paddingLeft: "0.25rem" }
+              : { opacity: 1, y: 0 }
+          }
+          transition={{ duration: 1 }}
+        >
+          United by sound, lifted by the rhythm
+        </motion.p>
       </motion.div>
 
-      {/* Hamburger & Slide Menu */}
-      {introDone && (
+      {/* Hamburger Menu */}
+      {bgAnimStart && (
         <>
           <motion.button
             className="absolute top-4 right-4 z-30 text-white"
             onClick={() => setMenuOpen(true)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.3 }}
           >
             <Menu size={32} />
           </motion.button>
@@ -169,7 +122,7 @@ export default function Home() {
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
               >
                 <button
                   onClick={() => setMenuOpen(false)}
@@ -177,22 +130,24 @@ export default function Home() {
                 >
                   <X size={28} />
                 </button>
-
                 <div className="flex-1 flex flex-col justify-center items-center gap-6">
-                  <h2 className="text-2xl font-bold mb-6">Who we are</h2>
                   <nav className="flex flex-col gap-4 text-lg">
-                    {["Home", "About", "Artists", "Contact"].map((link, i) => (
-                      <motion.a
-                        key={link}
-                        href="#"
-                        className="hover:underline"
+                    {navLinks.map((link, i) => (
+                      <motion.div
+                        key={link.name}
                         custom={i}
                         initial="hidden"
                         animate="visible"
                         variants={linkVariants}
                       >
-                        {link}
-                      </motion.a>
+                        <Link
+                          href={link.href}
+                          className="hover:underline"
+                          onClick={() => setMenuOpen(false)} // Close menu on click
+                        >
+                          {link.name}
+                        </Link>
+                      </motion.div>
                     ))}
                   </nav>
                 </div>
