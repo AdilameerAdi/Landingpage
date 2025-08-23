@@ -14,7 +14,7 @@ export default function Home() {
     const logoTimer = setTimeout(() => {
       setLogoMoved(true);
       setBlurRemoved(true);
-    }, 2000);
+    }, 1000);
     const bgTimer = setTimeout(() => setBgAnimStart(true), 4000);
     return () => {
       clearTimeout(logoTimer);
@@ -86,7 +86,7 @@ export default function Home() {
             width: logoMoved ? 96 : 250,
             height: logoMoved ? 96 : 250,
           }}
-          transition={{ duration: 0.7, ease: "easeInOut" }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
         />
         <motion.p
           className="text-base italic text-white drop-shadow-md text-center"
