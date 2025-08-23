@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import yaml from "js-yaml";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "../../components/Navbar";
 
 export default async function ArtistsPage() {
@@ -31,30 +32,35 @@ export default async function ArtistsPage() {
       <Navbar navLinks={navLinks} />
 
       {/* Hero Section */}
-      <div
-  className="w-full h-screen relative bg-cover bg-center bg-fixed"
-  style={{
-    backgroundImage:
-      'url("https://globalrecords.com/wp-content/uploads/2020/06/ourArtistsBg.jpg")',
-  }}
->
-  <div className="absolute inset-0 bg-black/50"></div>
-  <div className="absolute bottom-10 left-6 sm:left-10 text-left z-30">
-    <h1 className="text-white text-3xl sm:text-5xl md:text-7xl font-extrabold drop-shadow-lg">
-      Our Artists
-    </h1>
-  </div>
-</div>
+      <div className="w-full h-screen relative">
+        <Image
+          src="https://globalrecords.com/wp-content/uploads/2020/06/ourArtistsBg.jpg"
+          alt="Artists background"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute bottom-10 left-6 sm:left-10 text-left z-30">
+          <h1 className="text-white text-3xl sm:text-5xl md:text-7xl font-extrabold drop-shadow-lg">
+            Our Artists
+          </h1>
+        </div>
+      </div>
 
       {/* Artists Grid */}
       <div className="p-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mt-10">
         {artists.map((artist) => (
           <Link key={artist.slug} href={`/artist/${artist.slug}`}>
             <div className="overflow-hidden rounded-lg shadow-lg hover:shadow-2xl cursor-pointer">
-              <img
+              <Image
                 src={artist["profile-url"]}
                 alt={artist.name}
+                width={400}
+                height={256}
                 className="w-full h-64 object-cover transition-transform duration-300 ease-in-out hover:scale-105"
+                loading="lazy"
               />
               <div className="p-2 text-white text-center font-semibold bg-black/50">
                 {artist.name}

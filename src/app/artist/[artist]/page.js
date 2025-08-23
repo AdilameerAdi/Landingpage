@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import yaml from "js-yaml";
 import Navbar from "../../../components/Navbar";
+import Image from "next/image";
 
 export default async function ArtistPage({ params }) {
   const artistSlug = params.artist;
@@ -34,10 +35,15 @@ export default async function ArtistPage({ params }) {
       <Navbar navLinks={navLinks} />
 
       {/* Hero Section */}
-      <div
-        className="w-full h-screen relative flex items-end"
-        style={{ backgroundImage: `url(${artistData["profile-url"]})`, backgroundSize: "cover", backgroundPosition: "center" }}
-      >
+      <div className="w-full h-screen relative flex items-end">
+        <Image
+          src={artistData["profile-url"]}
+          alt={artistData.name}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="relative z-10 p-8">
           <h1 className="text-5xl md:text-7xl font-extrabold">{artistData.name}</h1>
@@ -49,9 +55,11 @@ export default async function ArtistPage({ params }) {
       <div className="max-w-6xl mx-auto p-8 flex flex-col md:flex-row gap-8 items-start">
         {/* Left: Small artist image */}
         <div className="flex-shrink-0">
-          <img
+          <Image
             src={artistData["profile-url"]}
             alt={artistData.name}
+            width={150}
+            height={300}
             className="w-[150px] h-[300px] object-cover rounded-lg shadow-lg"
           />
         </div>
@@ -106,11 +114,14 @@ export default async function ArtistPage({ params }) {
         <h2 className="text-2xl font-bold mb-4">Gallery</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {relatedImages.map((src, idx) => (
-            <img
+            <Image
               key={idx}
               src={src}
               alt={`Gallery ${idx + 1}`}
+              width={400}
+              height={256}
               className="w-full h-64 object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300 ease-in-out"
+              loading="lazy"
             />
           ))}
         </div>

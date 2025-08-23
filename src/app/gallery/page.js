@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import Navbar from "../../components/Navbar";
+import Image from "next/image";
 
 // Make the component async to fetch data on the server
 export default async function GalleryPage() {
@@ -13,6 +14,8 @@ export default async function GalleryPage() {
   const images = metadata.map((item) => ({
     src: `/gallery/${item.file}`,
     tags: item.tags,
+    width: 600,
+    height: 300,
   }));
 
   const navLinks = [
@@ -29,13 +32,15 @@ export default async function GalleryPage() {
       <Navbar navLinks={navLinks} />
 
       {/* Hero Section */}
-      <div
-        className="w-full h-screen relative bg-cover bg-center bg-fixed"
-        style={{
-          backgroundImage:
-            "url('https://globalrecords.com/wp-content/uploads/2020/06/ourArtistsBg.jpg')",
-        }}
-      >
+      <div className="w-full h-screen relative">
+        <Image
+          src="https://globalrecords.com/wp-content/uploads/2020/06/ourArtistsBg.jpg"
+          alt="Artists background"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute bottom-10 left-6 sm:left-10 text-left z-30">
           <h1 className="text-white text-3xl sm:text-5xl md:text-6xl font-extrabold drop-shadow-lg">
@@ -51,10 +56,13 @@ export default async function GalleryPage() {
             key={index}
             className="overflow-hidden rounded-lg shadow-md hover:shadow-xl"
           >
-            <img
+            <Image
               src={img.src}
               alt={`Gallery ${index + 1}`}
+              width={img.width}
+              height={img.height}
               className="w-full h-[300px] object-cover"
+              loading={index < 6 ? "eager" : "lazy"}
             />
           </div>
         ))}
