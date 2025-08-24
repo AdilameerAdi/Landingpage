@@ -56,7 +56,7 @@ export default async function ArtistPage({ params }) {
 
   return (
     <div className="relative w-full min-h-screen bg-black text-white">
-      {/* Navbar */}
+      {/* Navbar */} 
       <Navbar navLinks={navLinks} />
 
       {/* Hero Section */}
@@ -120,96 +120,95 @@ export default async function ArtistPage({ params }) {
           </div>
         </div>
       </div>
-{/* Artist Biography Section */}
-<div className="max-w-3xl mx-auto px-6 mt-12">
-  <div className="bg-black text-white p-8 rounded-2xl shadow-lg max-h-96 overflow-auto scroll-smooth animate-fadeIn">
-    <div className="space-y-6 w-full">
-      <h1 className="text-5xl text-center font-extrabold">Artist [name]</h1>
-      <p className="leading-relaxed text-lg">
-        {artistData.name} is an internationally recognized DJ and music producer,
-        known for their energetic performances and unique sound. They have captivated
-        audiences around the world with their innovative mixing style and genre-blending
-        music. Over the years, they have released multiple albums and singles that
-        have topped charts globally. 
-      </p>
-      <p className="leading-relaxed text-lg">
-        Their music style is influenced by electronic, house, and progressive genres,
-        creating a distinctive sound that resonates with millions of fans. 
-        Collaborations with other top artists have further enriched their musical journey.
-      </p>
-      <p className="leading-relaxed text-lg">
-        In addition to their music career, {artistData.name} has been an inspiration
-        for upcoming DJs and producers, sharing knowledge and supporting the music
-        community. Their live shows are praised for creativity, energy, and interaction
-        with the crowd.
-      </p>
-      <p className="leading-relaxed text-lg">
-        With a growing fan base on social media and streaming platforms, they continue
-        to push boundaries in music production and performance. Their dedication to
-        craft, stage presence, and artistry has earned them numerous awards and
-        international recognition.
-      </p>
-      <p className="leading-relaxed text-lg">
-        Outside of music, they are known for philanthropic activities and engaging
-        with fans through exclusive events and behind-the-scenes content. Their vision
-        is to inspire others and contribute positively to the global music scene.
-      </p>
-      <p className="leading-relaxed text-lg">
-        Upcoming tours and live performances are highly anticipated, with tickets
-        often selling out within minutes. Each event promises an unforgettable
-        experience for attendees.
-      </p>
-      <p className="leading-relaxed text-lg">
-        Overall, {artistData.name}'s journey reflects passion, talent, and perseverance,
-        making them a significant figure in the music industry.
-      </p>
-      <p className="leading-relaxed text-lg">
-        Fans appreciate the dedication and creativity that goes into each track and
-        live set. Their legacy continues to grow with every performance and release.
-      </p>
-      <p className="leading-relaxed text-lg">
-        From humble beginnings to international fame, {artistData.name} has remained
-        grounded, continuously evolving as an artist while staying connected with
-        the audience.
-      </p>
-    </div>
-  </div>
-</div>
+
+      {/* Artist Biography Section */}
+      <div className="max-w-3xl mx-auto px-6 mt-12">
+        <div className="bg-black text-white p-8 rounded-2xl shadow-lg max-h-96 overflow-auto scroll-smooth animate-fadeIn">
+          <div className="space-y-6 w-full">
+            <h1 className="text-5xl text-center font-extrabold">Artist [name]</h1>
+            <p className="leading-relaxed text-lg">
+              {artistData.name} is an internationally recognized DJ and music producer,
+              known for their energetic performances and unique sound. They have captivated
+              audiences around the world with their innovative mixing style and genre-blending
+              music. Over the years, they have released multiple albums and singles that
+              have topped charts globally. 
+            </p>
+            <p className="leading-relaxed text-lg">
+              Their music style is influenced by electronic, house, and progressive genres,
+              creating a distinctive sound that resonates with millions of fans. 
+              Collaborations with other top artists have further enriched their musical journey.
+            </p>
+            <p className="leading-relaxed text-lg">
+              In addition to their music career, {artistData.name} has been an inspiration
+              for upcoming DJs and producers, sharing knowledge and supporting the music
+              community. Their live shows are praised for creativity, energy, and interaction
+              with the crowd.
+            </p>
+            <p className="leading-relaxed text-lg">
+              With a growing fan base on social media and streaming platforms, they continue
+              to push boundaries in music production and performance. Their dedication to
+              craft, stage presence, and artistry has earned them numerous awards and
+              international recognition.
+            </p>
+            <p className="leading-relaxed text-lg">
+              Outside of music, they are known for philanthropic activities and engaging
+              with fans through exclusive events and behind-the-scenes content. Their vision
+              is to inspire others and contribute positively to the global music scene.
+            </p>
+            <p className="leading-relaxed text-lg">
+              Upcoming tours and live performances are highly anticipated, with tickets
+              often selling out within minutes. Each event promises an unforgettable
+              experience for attendees.
+            </p>
+            <p className="leading-relaxed text-lg">
+              Overall, {artistData.name}'s journey reflects passion, talent, and perseverance,
+              making them a significant figure in the music industry.
+            </p>
+            <p className="leading-relaxed text-lg">
+              Fans appreciate the dedication and creativity that goes into each track and
+              live set. Their legacy continues to grow with every performance and release.
+            </p>
+            <p className="leading-relaxed text-lg">
+              From humble beginnings to international fame, {artistData.name} has remained
+              grounded, continuously evolving as an artist while staying connected with
+              the audience.
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* Vertical Highlights Section */}
-     <div className="w-full bg-gray-900/80 py-16">
-  <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-    {staticHighlights.map((item, idx) => (
-      <div
-        key={idx}
-        className="bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col gap-4"
-      >
-        <h3 className="text-2xl font-bold text-yellow-400">{item.title}</h3>
-        {/* Multiple lines of description */}
-        <p className="text-gray-300 text-lg">{item.description}</p>
-        <p className="text-gray-300 text-lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-          vehicula mauris at libero sodales, vel tincidunt erat imperdiet.
-        </p>
-        <p className="text-gray-300 text-lg">
-          Curabitur auctor neque sit amet quam tempor, ac pulvinar urna
-          fermentum. Vivamus efficitur sapien id dui laoreet, at bibendum
-          nisi suscipit.
-        </p>
+      <div className="w-full bg-gray-900/80 py-16">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+          {staticHighlights.map((item, idx) => (
+            <div
+              key={idx}
+              className="bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col gap-4"
+            >
+              <h3 className="text-2xl font-bold text-yellow-400">{item.title}</h3>
+              <p className="text-gray-300 text-lg">{item.description}</p>
+              <p className="text-gray-300 text-lg">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+                vehicula mauris at libero sodales, vel tincidunt erat imperdiet.
+              </p>
+              <p className="text-gray-300 text-lg">
+                Curabitur auctor neque sit amet quam tempor, ac pulvinar urna
+                fermentum. Vivamus efficitur sapien id dui laoreet, at bibendum
+                nisi suscipit.
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Centered Contact Button */}
+        <div className="flex justify-center mt-12">
+          <Link href="/contact">
+            <button className="bg-yellow-400 text-black font-bold px-10 py-5 text-2xl rounded-3xl animate-bounce hover:scale-110 transition-all">
+              Contact
+            </button>
+          </Link>
+        </div>
       </div>
-    ))}
-  </div>
-
-  {/* Centered Contact Button */}
-  <div className="flex justify-center mt-12">
-  <Link href="/contact">
-    <button className="bg-yellow-400 text-black font-bold px-10 py-5 text-2xl rounded-3xl animate-bounce hover:scale-110 transition-all">
-      Contact
-    </button>
-  </Link>
-</div>
-
-</div>
 
       {/* Related Gallery */}
       <div className="max-w-6xl mx-auto p-8">
@@ -242,7 +241,7 @@ export default async function ArtistPage({ params }) {
         <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="pl-7">
             <h2 className="text-5xl sm:text-6xl font-bold mb-8 leading-tight">
-              Don’t be shy,<br />
+              Don&rsquo;t be shy,<br />
               say hi!
             </h2>
             <p className="text-2xl font-semibold">City Name</p>
