@@ -164,7 +164,7 @@ export default async function ArtistPage({ params }) {
               experience for attendees.
             </p>
             <p className="leading-relaxed text-lg">
-              Overall, {artistData.name}'s journey reflects passion, talent, and perseverance,
+              Overall, {artistData.name}s journey reflects passion, talent, and perseverance,
               making them a significant figure in the music industry.
             </p>
             <p className="leading-relaxed text-lg">
