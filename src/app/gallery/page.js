@@ -1,19 +1,14 @@
+// app/gallery/page.js
 import fs from "fs";
 import path from "path";
+import Image from "next/image";
 import Navbar from "../../components/Navbar";
 
-// Make the component async to fetch data on the server
 export default async function GalleryPage() {
-  // Read metadata.json on the server
+  // Read metadata.json server-side
   const metadataPath = path.join(process.cwd(), "data/metadata.json");
   const metadataRaw = fs.readFileSync(metadataPath, "utf-8");
   const metadata = JSON.parse(metadataRaw);
-
-  // Prepare images array
-  const images = metadata.map((item) => ({
-    src: `/gallery/${item.file}`,
-    tags: item.tags,
-  }));
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -37,7 +32,7 @@ export default async function GalleryPage() {
         }}
       >
         <div className="absolute inset-0 bg-black/50"></div>
-        <div className="absolute bottom-10 left-6 sm:left-10 text-left z-30">
+        <div className="absolute bottom-10 left-6 sm:left-10 z-30">
           <h1 className="text-white text-3xl sm:text-5xl md:text-6xl font-extrabold drop-shadow-lg">
             Our Gallery
           </h1>
@@ -46,15 +41,17 @@ export default async function GalleryPage() {
 
       {/* Gallery Grid */}
       <div className="relative z-40 p-6 grid grid-cols-2 md:grid-cols-5 gap-4">
-        {images.map((img, index) => (
+        {metadata.map((item, index) => (
           <div
             key={index}
-            className="overflow-hidden rounded-lg shadow-md hover:shadow-xl"
+            className="overflow-hidden rounded-lg shadow-md hover:shadow-xl relative w-full h-[300px]"
           >
-            <img
-              src={img.src}
+            <Image
+              src={`/gallery/${item.file}`}
               alt={`Gallery ${index + 1}`}
-              className="w-full h-[300px] object-cover"
+              fill
+              className="object-cover"
+              priority 
             />
           </div>
         ))}
