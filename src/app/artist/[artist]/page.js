@@ -2,6 +2,7 @@
 import fs from "fs";
 import path from "path";
 import yaml from "js-yaml";
+import Image from "next/image";
 import Navbar from "../../../components/Navbar";
 
 export default async function ArtistPage({ params }) {
@@ -49,10 +50,13 @@ export default async function ArtistPage({ params }) {
       <div className="max-w-6xl mx-auto p-8 flex flex-col md:flex-row gap-8 items-start">
         {/* Left: Small artist image */}
         <div className="flex-shrink-0">
-          <img
+          <Image
             src={artistData["profile-url"]}
             alt={artistData.name}
-            className="w-[150px] h-[300px] object-cover rounded-lg shadow-lg"
+            width={150}
+            height={300}
+            className="object-cover rounded-lg shadow-lg"
+            priority
           />
         </div>
 
@@ -106,11 +110,14 @@ export default async function ArtistPage({ params }) {
         <h2 className="text-2xl font-bold mb-4">Gallery</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {relatedImages.map((src, idx) => (
-            <img
+            <Image
               key={idx}
               src={src}
               alt={`Gallery ${idx + 1}`}
-              className="w-full h-64 object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300 ease-in-out"
+              width={400}
+              height={400}
+              className="object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300 ease-in-out"
+              priority
             />
           ))}
         </div>
@@ -121,12 +128,9 @@ export default async function ArtistPage({ params }) {
         className="relative w-full text-white py-20 px-6 bg-cover bg-center"
         style={{ backgroundImage: "url('https://globalrecords.com/wp-content/uploads/2020/05/globalFooter22.jpg')" }}
       >
-        {/* Overlay */}
         <div className="absolute inset-0 bg-black/70"></div>
 
-        {/* Content */}
         <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Left Section */}
           <div className="pl-7">
             <h2 className="text-5xl sm:text-6xl font-bold mb-8 leading-tight">
               Don’t be shy,<br />say hi!
@@ -145,7 +149,6 @@ export default async function ArtistPage({ params }) {
             </div>
           </div>
 
-          {/* Middle Section */}
           <div className="flex flex-col justify-center">
             <p className="text-gray-400 text-xl mb-3">Start a conversation</p>
             <p className="text-3xl sm:text-4xl font-medium hover:text-yellow-400 cursor-pointer">
@@ -153,7 +156,6 @@ export default async function ArtistPage({ params }) {
             </p>
           </div>
 
-          {/* Right Section */}
           <div className="flex flex-col justify-center">
             <p className="text-gray-400 text-xl mb-3">For concerts</p>
             <p className="text-3xl sm:text-4xl font-medium hover:text-yellow-400 cursor-pointer">

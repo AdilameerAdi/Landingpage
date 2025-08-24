@@ -82,7 +82,7 @@ export default async function ArtistsPage() {
                 width={400}
                 height={400}
                 className="w-full h-64 object-cover transition-transform duration-300 ease-in-out hover:scale-105"
-                loading="lazy"
+                priority
                 placeholder="blur"
                 blurDataURL="/placeholder.png"
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
