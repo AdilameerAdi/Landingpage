@@ -123,7 +123,10 @@ export default async function ArtistPage({ params }) {
 
       {/* Artist Biography Section */}
       <div className="max-w-3xl mx-auto px-6 mt-12">
-        <div className="bg-black text-white p-8 rounded-2xl shadow-lg max-h-96 overflow-auto scroll-smooth animate-fadeIn">
+        <div
+          className="bg-black text-white p-8 rounded-2xl shadow-lg max-h-96 overflow-auto scroll-smooth animate-fadeIn"
+          suppressHydrationWarning
+        >
           <div className="space-y-6 w-full">
             <h1 className="text-5xl text-center font-extrabold">Artist [name]</h1>
             <p className="leading-relaxed text-lg">
