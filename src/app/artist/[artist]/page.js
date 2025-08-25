@@ -66,6 +66,7 @@ export default async function ArtistPage({ params }) {
           backgroundImage: `url(${artistData["profile-url"]})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          backgroundAttachment:"fixed"
         }}
       >
         <div className="absolute inset-0 bg-black/50"></div>
@@ -74,166 +75,225 @@ export default async function ArtistPage({ params }) {
           <p className="mt-2 text-xl md:text-2xl">{artistData.Genre}</p>
         </div>
       </div>
+       {/* Artist Biography Section */}
+     <div className="max-w-3xl mx-auto px-6 mt-12">
+  <div
+    className="bg-black text-white p-8 z-20 rounded-2xl shadow-lg max-h-96 overflow-auto scroll-smooth animate-fadeIn"
+    suppressHydrationWarning
+  >
+    <div className="space-y-6 w-full">
+      {/* Render dynamic artist name */}
+      <h1 className="text-5xl text-center font-extrabold">
+        {artistData?.name || "Artist"}
+      </h1>
+
+      <p className="leading-relaxed text-lg">
+        {artistData?.name} is an internationally recognized DJ and music producer,
+        known for their energetic performances and unique sound. They have captivated
+        audiences around the world with their innovative mixing style and genre-blending
+        music. Over the years, they have released multiple albums and singles that
+        have topped charts globally.
+      </p>
+
+      <p className="leading-relaxed text-lg">
+        Their music style is influenced by electronic, house, and progressive genres,
+        creating a distinctive sound that resonates with millions of fans.
+        Collaborations with other top artists have further enriched their musical journey.
+      </p>
+
+      <p className="leading-relaxed text-lg">
+        In addition to their music career, {artistData?.name} has been an inspiration
+        for upcoming DJs and producers, sharing knowledge and supporting the music
+        community. Their live shows are praised for creativity, energy, and interaction
+        with the crowd.
+      </p>
+
+      <p className="leading-relaxed text-lg">
+        With a growing fan base on social media and streaming platforms, they continue
+        to push boundaries in music production and performance. Their dedication to
+        craft, stage presence, and artistry has earned them numerous awards and
+        international recognition.
+      </p>
+
+      <p className="leading-relaxed text-lg">
+        Outside of music, they are known for philanthropic activities and engaging
+        with fans through exclusive events and behind-the-scenes content. Their vision
+        is to inspire others and contribute positively to the global music scene.
+      </p>
+
+      <p className="leading-relaxed text-lg">
+        Upcoming tours and live performances are highly anticipated, with tickets
+        often selling out within minutes. Each event promises an unforgettable
+        experience for attendees.
+      </p>
+
+      <p className="leading-relaxed text-lg">
+        Overall, {artistData?.name}'s journey reflects passion, talent, and perseverance,
+        making them a significant figure in the music industry.
+      </p>
+
+      <p className="leading-relaxed text-lg">
+        Fans appreciate the dedication and creativity that goes into each track and
+        live set. Their legacy continues to grow with every performance and release.
+      </p>
+
+      <p className="leading-relaxed text-lg">
+        From humble beginnings to international fame, {artistData?.name} has remained
+        grounded, continuously evolving as an artist while staying connected with
+        the audience.
+      </p>
+
+      {/* Extra static text to ensure scrolling */}
+      <p className="leading-relaxed text-lg">
+        Beyond their music, {artistData?.name} actively collaborates with global brands and participates 
+        in cultural exchange programs, promoting music as a universal language that connects people.
+      </p>
+
+      <p className="leading-relaxed text-lg">
+        They have also been featured in documentaries and music industry panels, 
+        sharing insights on creativity and innovation. Their influence has extended 
+        beyond entertainment, contributing to conversations about mental health 
+        and artistic expression.
+      </p>
+
+      <p className="leading-relaxed text-lg">
+        As technology and music evolve, {artistData?.name} continues to experiment 
+        with immersive concert experiences and cutting-edge production techniques, 
+        ensuring that their fans always have something exciting to look forward to.
+      </p>
+
+      <p className="leading-relaxed text-lg">
+        The future holds even more promise for {artistData?.name}, with plans for 
+        new music, collaborations, and tours that will further cement their legacy 
+        as one of the most influential artists of this generation.
+      </p>
+    </div>
+  </div>
+</div>
+
+
 
       {/* Artist Overview Section */}
-      <div className="w-full bg-gradient-to-b from-gray-900/90 via-gray-900/80 to-gray-900/90 py-20">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-start px-6">
-          {/* Left: Larger artist image with decorative border */}
-          <div className="flex-shrink-0 relative">
-            <div className="relative w-64 h-96 md:w-80 md:h-[36rem] rounded-xl overflow-hidden shadow-2xl border-4 border-yellow-400">
-              <Image
-                src={artistData["profile-url"]}
-                alt={artistData.name}
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-            <div className="absolute -bottom-6 left-0 w-full text-center">
-              <p className="text-gray-400 italic text-lg md:text-xl">
-                “{artistData.Quote || "No quote available"}”
-              </p>
-            </div>
-          </div>
-
-          {/* Right: Artist Details */}
-          <div className="flex-1 bg-gray-900/70 p-10 rounded-2xl shadow-2xl space-y-8">
-            <div className="space-y-4">
-              <h2 className="text-5xl md:text-6xl font-extrabold text-yellow-400">{artistData.name}</h2>
-              <p className="text-gray-300 text-lg md:text-xl leading-relaxed">{artistData.Description}</p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <DetailItem
-                iconPath="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4s-4 1.79-4 4 1.79 4 4 4z M12 14c-4 0-6 2-6 4v2h12v-2c0-2-2-4-6-4z"
-                label="City"
-                value="Example City"
-              />
-              <DetailItem
-                iconPath="M12 8v4l3 3 M12 20.5C6.753 20.5 2.5 16.247 2.5 11S6.753 1.5 12 1.5 21.5 5.753 21.5 11 17.247 20.5 12 20.5z"
-                label="Years Active"
-                value="5"
-              />
-              <DetailItem iconPath="M9 19V6h13 M9 6L5 3" label="Genre" value={artistData.Genre} />
-              <DetailItem iconPath="M9 19V6h13 M9 6L5 3" label="Expertise" value="DJing, Music Production" />
-            </div>
-          </div>
-        </div>
+<div className="w-full bg-gray-900/90 py-20">
+  <div className="max-w-6xl mx-auto flex flex-col items-center gap-12 px-6">
+    
+    {/* Centered artist image */}
+    <div className="w-3/4 relative rounded-xl overflow-hidden shadow-2xl border-4 border-yellow-400">
+      <Image
+        src={artistData["profile-url"]}
+        alt={artistData.name}
+        width={1000}
+        height={1000}
+        className="object-cover w-full"
+        priority
+      />
+      <div className="absolute bottom-4 left-0 w-full text-center">
+        <p className="text-gray-400 italic text-lg md:text-xl">
+          “{artistData.Quote || "No quote available"}”
+        </p>
       </div>
+    </div>
 
-      {/* Artist Biography Section */}
-      <div className="max-w-3xl mx-auto px-6 mt-12">
+    {/* Artist details / points */}
+    <div className="w-full max-w-3xl space-y-6 text-center">
+      <h2 className="text-5xl font-extrabold text-yellow-400">{artistData.name}</h2>
+      <p className="text-gray-300 text-lg md:text-xl leading-relaxed">{artistData.Description}</p>
+
+      <ul className="list-disc list-inside text-gray-200 space-y-2 text-left md:text-center">
+        <li><span className="font-semibold">City:</span> Example City</li>
+        <li><span className="font-semibold">Years Active:</span> 5</li>
+        <li><span className="font-semibold">Genre:</span> {artistData.Genre}</li>
+        <li><span className="font-semibold">Expertise:</span> DJing, Music Production</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+     
+
+      {/* Artist Music & Booking Section */}
+<div className="w-full bg-gray-900/80 py-16">
+  <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row gap-12 items-center md:items-start">
+
+    {/* Left: Bigger placeholder images in 2x2 grid */}
+    <div className="grid grid-cols-2 gap-8 mx-auto">
+      {Array.from({ length: 4 }).map((_, idx) => (
         <div
-          className="bg-black text-white p-8 rounded-2xl shadow-lg max-h-96 overflow-auto scroll-smooth animate-fadeIn"
-          suppressHydrationWarning
+          key={idx}
+          className="w-[200px] h-[250px] flex items-center justify-center rounded-xl shadow-xl bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 text-gray-800 font-bold text-center text-lg"
         >
-          <div className="space-y-6 w-full">
-            <h1 className="text-5xl text-center font-extrabold">Artist [name]</h1>
-            <p className="leading-relaxed text-lg">
-              {artistData.name} is an internationally recognized DJ and music producer,
-              known for their energetic performances and unique sound. They have captivated
-              audiences around the world with their innovative mixing style and genre-blending
-              music. Over the years, they have released multiple albums and singles that
-              have topped charts globally. 
-            </p>
-            <p className="leading-relaxed text-lg">
-              Their music style is influenced by electronic, house, and progressive genres,
-              creating a distinctive sound that resonates with millions of fans. 
-              Collaborations with other top artists have further enriched their musical journey.
-            </p>
-            <p className="leading-relaxed text-lg">
-              In addition to their music career, {artistData.name} has been an inspiration
-              for upcoming DJs and producers, sharing knowledge and supporting the music
-              community. Their live shows are praised for creativity, energy, and interaction
-              with the crowd.
-            </p>
-            <p className="leading-relaxed text-lg">
-              With a growing fan base on social media and streaming platforms, they continue
-              to push boundaries in music production and performance. Their dedication to
-              craft, stage presence, and artistry has earned them numerous awards and
-              international recognition.
-            </p>
-            <p className="leading-relaxed text-lg">
-              Outside of music, they are known for philanthropic activities and engaging
-              with fans through exclusive events and behind-the-scenes content. Their vision
-              is to inspire others and contribute positively to the global music scene.
-            </p>
-            <p className="leading-relaxed text-lg">
-              Upcoming tours and live performances are highly anticipated, with tickets
-              often selling out within minutes. Each event promises an unforgettable
-              experience for attendees.
-            </p>
-            <p className="leading-relaxed text-lg">
-              Overall, {artistData.name}s journey reflects passion, talent, and perseverance,
-              making them a significant figure in the music industry.
-            </p>
-            <p className="leading-relaxed text-lg">
-              Fans appreciate the dedication and creativity that goes into each track and
-              live set. Their legacy continues to grow with every performance and release.
-            </p>
-            <p className="leading-relaxed text-lg">
-              From humble beginnings to international fame, {artistData.name} has remained
-              grounded, continuously evolving as an artist while staying connected with
-              the audience.
-            </p>
-          </div>
+          Song Image {idx + 1}
         </div>
-      </div>
+      ))}
+    </div>
 
-      {/* Vertical Highlights Section */}
-      <div className="w-full bg-gray-900/80 py-16">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-          {staticHighlights.map((item, idx) => (
-            <div
-              key={idx}
-              className="bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col gap-4"
-            >
-              <h3 className="text-2xl font-bold text-yellow-400">{item.title}</h3>
-              <p className="text-gray-300 text-lg">{item.description}</p>
-              <p className="text-gray-300 text-lg">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-                vehicula mauris at libero sodales, vel tincidunt erat imperdiet.
-              </p>
-              <p className="text-gray-300 text-lg">
-                Curabitur auctor neque sit amet quam tempor, ac pulvinar urna
-                fermentum. Vivamus efficitur sapien id dui laoreet, at bibendum
-                nisi suscipit.
-              </p>
-            </div>
-          ))}
-        </div>
+    {/* Right: Songs heading and paragraph */}
+    <div className="flex flex-col gap-6 w-full md:w-1/2">
+      <h2 className="text-4xl font-bold text-center text-yellow-400">Songs</h2>
+      
+      {/* Songs as paragraph */}
+      <p className="text-gray-200 text-lg leading-relaxed">
+        {artistData.Songs?.join(", ")}
+      </p>
 
-        {/* Centered Contact Button */}
-        <div className="flex justify-center mt-12">
-          <Link href="/contact">
-            <button className="bg-yellow-400 text-black font-bold px-10 py-5 text-2xl rounded-3xl animate-bounce hover:scale-110 transition-all">
-              Contact
-            </button>
-          </Link>
-        </div>
+      {/* Static artist data */}
+      <div className="mt-6 text-gray-300 text-lg space-y-2">
+        <p className="text-white text-3xl mt-4">
+  This artist has performed in international music festivals and collaborated with top DJs. 
+  Their style is influenced by electronic, house, and progressive music genres, attracting millions 
+  of followers on social media worldwide. They frequently perform at concerts and live events, and 
+  have released multiple singles and albums that are globally recognized.
+</p>
+
       </div>
+    </div>
+  </div>
+
+  {/* Centered Book Now Button */}
+  <div className="flex justify-center mt-12">
+    <Link href="/contact">
+      <button className="bg-yellow-400 text-black font-bold px-10 py-5 text-2xl rounded-3xl animate-bounce hover:scale-110 transition-all">
+        Book Now
+      </button>
+    </Link>
+  </div>
+</div>
+
+
+
+
+
 
       {/* Related Gallery */}
-      <div className="max-w-6xl mx-auto p-8">
-        <h2 className="text-2xl font-bold mb-4">Gallery</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-          {relatedImages.map((src, idx) => (
-            <Image
-              key={idx}
-              src={src}
-              alt={`Gallery ${idx + 1}`}
-              width={400}
-              height={400}
-              className="object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300 ease-in-out"
-              priority
-            />
-          ))}
-        </div>
-      </div>
+     <div className="max-w-6xl mx-auto p-8">
+  <h2 className="text-7xl font-bold text-center mb-4">Gallery</h2>
+  
+  {relatedImages.length > 0 ? (
+    <div className="flex gap-6 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 p-2 bg-black rounded-lg min-h-[520px]">
+      {relatedImages.map((src, idx) => (
+        <Image
+          key={idx}
+          src={src}
+          alt={`Gallery ${idx + 1}`}
+          width={500}
+          height={500}
+          className="object-cover rounded-lg shadow-md flex-shrink-0 hover:scale-105 transition-transform duration-300 ease-in-out"
+          priority
+        />
+      ))}
+    </div>
+  ) : (
+    <div className="bg-black rounded-lg min-h-[520px] flex items-center justify-center text-white">
+      No images available
+    </div>
+  )}
+</div>
+
 
       {/* Contact Footer Section */}
       <div
-        className="relative w-full text-white py-20 px-6 bg-cover bg-center"
+        className="relative w-full text-white py-20  mt-6px-6 bg-cover bg-center"
         style={{
           backgroundImage:
             "url('https://globalrecords.com/wp-content/uploads/2020/05/globalFooter22.jpg')",
